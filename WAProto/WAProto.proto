@@ -1511,22 +1511,13 @@ message Message {
         optional Header header = 1;
         optional Body body = 2;
         optional Footer footer = 3;
-        optional BloksWidget bloksWidget = 8;
         optional ContextInfo contextInfo = 15;
-        optional UrlTrackingMap urlTrackingMap = 16;
         oneof interactiveMessage {
             Message.InteractiveMessage.ShopMessage shopStorefrontMessage = 4;
             Message.InteractiveMessage.CollectionMessage collectionMessage = 5;
             Message.InteractiveMessage.NativeFlowMessage nativeFlowMessage = 6;
             Message.InteractiveMessage.CarouselMessage carouselMessage = 7;
         }
-        message BloksWidget {
-            optional string uuid = 1;
-            optional string data = 2;
-            optional string type = 3;
-            optional string fallback = 4;
-        }
-        
         message Body {
             optional string text = 1;
         }
@@ -1534,12 +1525,6 @@ message Message {
         message CarouselMessage {
             repeated Message.InteractiveMessage cards = 1;
             optional int32 messageVersion = 2;
-            optional CarouselCardType carouselCardType = 3;
-            enum CarouselCardType {
-                UNKNOWN = 0;
-                HSCROLL_CARDS = 1;
-                ALBUM_IMAGE = 2;
-            }
         }
         
         message CollectionMessage {
@@ -1550,24 +1535,18 @@ message Message {
         
         message Footer {
             optional string text = 1;
-            optional bool hasMediaAttachment = 3;
-            oneof media {
-                Message.AudioMessage audioMessage = 2;
-            }
         }
         
         message Header {
             optional string title = 1;
             optional string subtitle = 2;
             optional bool hasMediaAttachment = 5;
-            optional Message.InteractiveMessage.BloksWidget bloksWidget = 10;
             oneof media {
                 Message.DocumentMessage documentMessage = 3;
                 Message.ImageMessage imageMessage = 4;
                 bytes jpegThumbnail = 6;
                 Message.VideoMessage videoMessage = 7;
                 Message.LocationMessage locationMessage = 8;
-                Message.ProductMessage productMessage = 9;
             }
         }
         
@@ -3363,16 +3342,4 @@ message WebNotificationsInfo {
     optional uint32 unreadChats = 3;
     optional uint32 notifyMessageCount = 4;
     repeated WebMessageInfo notifyMessages = 5;
-}
-
-
-message UrlTrackingMap {
-    repeated UrlTrackingMapElement urlTrackingMapElements = 1;
-    message UrlTrackingMapElement {
-        optional string originalUrl = 1;
-        optional string unconsentedUsersUrl = 2;
-        optional string consentedUsersUrl = 3;
-        optional uint32 cardIndex = 4;
-    }
-    
 }

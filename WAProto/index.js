@@ -79457,7 +79457,6 @@ $root.proto = (function() {
              * @property {proto.Message.InteractiveMessage.IHeader|null} [header] InteractiveMessage header
              * @property {proto.Message.InteractiveMessage.IBody|null} [body] InteractiveMessage body
              * @property {proto.Message.InteractiveMessage.IFooter|null} [footer] InteractiveMessage footer
-             * @property {proto.Message.InteractiveMessage.IBloksWidget|null} [bloksWidget] InteractiveMessage bloksWidget
              * @property {proto.IContextInfo|null} [contextInfo] InteractiveMessage contextInfo
              * @property {proto.IUrlTrackingMap|null} [urlTrackingMap] InteractiveMessage urlTrackingMap
              * @property {proto.Message.InteractiveMessage.IShopMessage|null} [shopStorefrontMessage] InteractiveMessage shopStorefrontMessage
@@ -79504,14 +79503,6 @@ $root.proto = (function() {
              * @instance
              */
             InteractiveMessage.prototype.footer = null;
-
-            /**
-             * InteractiveMessage bloksWidget.
-             * @member {proto.Message.InteractiveMessage.IBloksWidget|null|undefined} bloksWidget
-             * @memberof proto.Message.InteractiveMessage
-             * @instance
-             */
-            InteractiveMessage.prototype.bloksWidget = null;
 
             /**
              * InteractiveMessage contextInfo.
@@ -79583,12 +79574,6 @@ $root.proto = (function() {
             });
 
             // Virtual OneOf for proto3 optional field
-            Object.defineProperty(InteractiveMessage.prototype, "_bloksWidget", {
-                get: $util.oneOfGetter($oneOfFields = ["bloksWidget"]),
-                set: $util.oneOfSetter($oneOfFields)
-            });
-
-            // Virtual OneOf for proto3 optional field
             Object.defineProperty(InteractiveMessage.prototype, "_contextInfo", {
                 get: $util.oneOfGetter($oneOfFields = ["contextInfo"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -79649,8 +79634,6 @@ $root.proto = (function() {
                     $root.proto.Message.InteractiveMessage.NativeFlowMessage.encode(message.nativeFlowMessage, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                 if (message.carouselMessage != null && Object.hasOwnProperty.call(message, "carouselMessage"))
                     $root.proto.Message.InteractiveMessage.CarouselMessage.encode(message.carouselMessage, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
-                if (message.bloksWidget != null && Object.hasOwnProperty.call(message, "bloksWidget"))
-                    $root.proto.Message.InteractiveMessage.BloksWidget.encode(message.bloksWidget, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.proto.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
                 if (message.urlTrackingMap != null && Object.hasOwnProperty.call(message, "urlTrackingMap"))
@@ -79682,14 +79665,12 @@ $root.proto = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InteractiveMessage.decode = function decode(reader, length, error) {
+            InteractiveMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.header = $root.proto.Message.InteractiveMessage.Header.decode(reader, reader.uint32());
@@ -79701,10 +79682,6 @@ $root.proto = (function() {
                         }
                     case 3: {
                             message.footer = $root.proto.Message.InteractiveMessage.Footer.decode(reader, reader.uint32());
-                            break;
-                        }
-                    case 8: {
-                            message.bloksWidget = $root.proto.Message.InteractiveMessage.BloksWidget.decode(reader, reader.uint32());
                             break;
                         }
                     case 15: {
@@ -79791,14 +79768,6 @@ $root.proto = (function() {
                             return "footer." + error;
                     }
                 }
-                if (message.bloksWidget != null && message.hasOwnProperty("bloksWidget")) {
-                    properties._bloksWidget = 1;
-                    {
-                        var error = $root.proto.Message.InteractiveMessage.BloksWidget.verify(message.bloksWidget);
-                        if (error)
-                            return "bloksWidget." + error;
-                    }
-                }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
                     properties._contextInfo = 1;
                     {
@@ -79883,11 +79852,6 @@ $root.proto = (function() {
                         throw TypeError(".proto.Message.InteractiveMessage.footer: object expected");
                     message.footer = $root.proto.Message.InteractiveMessage.Footer.fromObject(object.footer);
                 }
-                if (object.bloksWidget != null) {
-                    if (typeof object.bloksWidget !== "object")
-                        throw TypeError(".proto.Message.InteractiveMessage.bloksWidget: object expected");
-                    message.bloksWidget = $root.proto.Message.InteractiveMessage.BloksWidget.fromObject(object.bloksWidget);
-                }
                 if (object.contextInfo != null) {
                     if (typeof object.contextInfo !== "object")
                         throw TypeError(".proto.Message.InteractiveMessage.contextInfo: object expected");
@@ -79969,11 +79933,6 @@ $root.proto = (function() {
                     if (options.oneofs)
                         object.interactiveMessage = "carouselMessage";
                 }
-                if (message.bloksWidget != null && message.hasOwnProperty("bloksWidget")) {
-                    object.bloksWidget = $root.proto.Message.InteractiveMessage.BloksWidget.toObject(message.bloksWidget, options);
-                    if (options.oneofs)
-                        object._bloksWidget = "bloksWidget";
-                }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
                     object.contextInfo = $root.proto.ContextInfo.toObject(message.contextInfo, options);
                     if (options.oneofs)
@@ -80012,8 +79971,6 @@ $root.proto = (function() {
                 }
                 return typeUrlPrefix + "/proto.Message.InteractiveMessage";
             };
-
-            InteractiveMessage.BloksWidget = undefined;
 
             InteractiveMessage.Body = (function() {
 
@@ -80109,14 +80066,12 @@ $root.proto = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Body.decode = function decode(reader, length, error) {
+                Body.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage.Body();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -80241,7 +80196,6 @@ $root.proto = (function() {
                  * @interface ICarouselMessage
                  * @property {Array.<proto.Message.IInteractiveMessage>|null} [cards] CarouselMessage cards
                  * @property {number|null} [messageVersion] CarouselMessage messageVersion
-                 * @property {proto.Message.InteractiveMessage.CarouselMessage.CarouselCardType|null} [carouselCardType] CarouselMessage carouselCardType
                  */
 
                 /**
@@ -80276,26 +80230,12 @@ $root.proto = (function() {
                  */
                 CarouselMessage.prototype.messageVersion = null;
 
-                /**
-                 * CarouselMessage carouselCardType.
-                 * @member {proto.Message.InteractiveMessage.CarouselMessage.CarouselCardType|null|undefined} carouselCardType
-                 * @memberof proto.Message.InteractiveMessage.CarouselMessage
-                 * @instance
-                 */
-                CarouselMessage.prototype.carouselCardType = null;
-
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
                 // Virtual OneOf for proto3 optional field
                 Object.defineProperty(CarouselMessage.prototype, "_messageVersion", {
                     get: $util.oneOfGetter($oneOfFields = ["messageVersion"]),
-                    set: $util.oneOfSetter($oneOfFields)
-                });
-
-                // Virtual OneOf for proto3 optional field
-                Object.defineProperty(CarouselMessage.prototype, "_carouselCardType", {
-                    get: $util.oneOfGetter($oneOfFields = ["carouselCardType"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
@@ -80328,8 +80268,6 @@ $root.proto = (function() {
                             $root.proto.Message.InteractiveMessage.encode(message.cards[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.messageVersion != null && Object.hasOwnProperty.call(message, "messageVersion"))
                         writer.uint32(/* id 2, wireType 0 =*/16).int32(message.messageVersion);
-                    if (message.carouselCardType != null && Object.hasOwnProperty.call(message, "carouselCardType"))
-                        writer.uint32(/* id 3, wireType 0 =*/24).int32(message.carouselCardType);
                     return writer;
                 };
 
@@ -80357,14 +80295,12 @@ $root.proto = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CarouselMessage.decode = function decode(reader, length, error) {
+                CarouselMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage.CarouselMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.cards && message.cards.length))
@@ -80374,10 +80310,6 @@ $root.proto = (function() {
                             }
                         case 2: {
                                 message.messageVersion = reader.int32();
-                                break;
-                            }
-                        case 3: {
-                                message.carouselCardType = reader.int32();
                                 break;
                             }
                         default:
@@ -80430,17 +80362,6 @@ $root.proto = (function() {
                         if (!$util.isInteger(message.messageVersion))
                             return "messageVersion: integer expected";
                     }
-                    if (message.carouselCardType != null && message.hasOwnProperty("carouselCardType")) {
-                        properties._carouselCardType = 1;
-                        switch (message.carouselCardType) {
-                        default:
-                            return "carouselCardType: enum value expected";
-                        case 0:
-                        case 1:
-                        case 2:
-                            break;
-                        }
-                    }
                     return null;
                 };
 
@@ -80468,26 +80389,6 @@ $root.proto = (function() {
                     }
                     if (object.messageVersion != null)
                         message.messageVersion = object.messageVersion | 0;
-                    switch (object.carouselCardType) {
-                    default:
-                        if (typeof object.carouselCardType === "number") {
-                            message.carouselCardType = object.carouselCardType;
-                            break;
-                        }
-                        break;
-                    case "UNKNOWN":
-                    case 0:
-                        message.carouselCardType = 0;
-                        break;
-                    case "HSCROLL_CARDS":
-                    case 1:
-                        message.carouselCardType = 1;
-                        break;
-                    case "ALBUM_IMAGE":
-                    case 2:
-                        message.carouselCardType = 2;
-                        break;
-                    }
                     return message;
                 };
 
@@ -80515,11 +80416,6 @@ $root.proto = (function() {
                         object.messageVersion = message.messageVersion;
                         if (options.oneofs)
                             object._messageVersion = "messageVersion";
-                    }
-                    if (message.carouselCardType != null && message.hasOwnProperty("carouselCardType")) {
-                        object.carouselCardType = options.enums === String ? $root.proto.Message.InteractiveMessage.CarouselMessage.CarouselCardType[message.carouselCardType] === undefined ? message.carouselCardType : $root.proto.Message.InteractiveMessage.CarouselMessage.CarouselCardType[message.carouselCardType] : message.carouselCardType;
-                        if (options.oneofs)
-                            object._carouselCardType = "carouselCardType";
                     }
                     return object;
                 };
@@ -80549,22 +80445,6 @@ $root.proto = (function() {
                     }
                     return typeUrlPrefix + "/proto.Message.InteractiveMessage.CarouselMessage";
                 };
-
-                /**
-                 * CarouselCardType enum.
-                 * @name proto.Message.InteractiveMessage.CarouselMessage.CarouselCardType
-                 * @enum {number}
-                 * @property {number} UNKNOWN=0 UNKNOWN value
-                 * @property {number} HSCROLL_CARDS=1 HSCROLL_CARDS value
-                 * @property {number} ALBUM_IMAGE=2 ALBUM_IMAGE value
-                 */
-                CarouselMessage.CarouselCardType = (function() {
-                    var valuesById = {}, values = Object.create(valuesById);
-                    values[valuesById[0] = "UNKNOWN"] = 0;
-                    values[valuesById[1] = "HSCROLL_CARDS"] = 1;
-                    values[valuesById[2] = "ALBUM_IMAGE"] = 2;
-                    return values;
-                })();
 
                 return CarouselMessage;
             })();
@@ -80697,14 +80577,12 @@ $root.proto = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CollectionMessage.decode = function decode(reader, length, error) {
+                CollectionMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage.CollectionMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.bizJid = reader.string();
@@ -80860,8 +80738,6 @@ $root.proto = (function() {
                  * @memberof proto.Message.InteractiveMessage
                  * @interface IFooter
                  * @property {string|null} [text] Footer text
-                 * @property {boolean|null} [hasMediaAttachment] Footer hasMediaAttachment
-                 * @property {proto.Message.IAudioMessage|null} [audioMessage] Footer audioMessage
                  */
 
                 /**
@@ -80887,45 +80763,12 @@ $root.proto = (function() {
                  */
                 Footer.prototype.text = null;
 
-                /**
-                 * Footer hasMediaAttachment.
-                 * @member {boolean|null|undefined} hasMediaAttachment
-                 * @memberof proto.Message.InteractiveMessage.Footer
-                 * @instance
-                 */
-                Footer.prototype.hasMediaAttachment = null;
-
-                /**
-                 * Footer audioMessage.
-                 * @member {proto.Message.IAudioMessage|null|undefined} audioMessage
-                 * @memberof proto.Message.InteractiveMessage.Footer
-                 * @instance
-                 */
-                Footer.prototype.audioMessage = null;
-
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
                 // Virtual OneOf for proto3 optional field
                 Object.defineProperty(Footer.prototype, "_text", {
                     get: $util.oneOfGetter($oneOfFields = ["text"]),
-                    set: $util.oneOfSetter($oneOfFields)
-                });
-
-                // Virtual OneOf for proto3 optional field
-                Object.defineProperty(Footer.prototype, "_hasMediaAttachment", {
-                    get: $util.oneOfGetter($oneOfFields = ["hasMediaAttachment"]),
-                    set: $util.oneOfSetter($oneOfFields)
-                });
-
-                /**
-                 * Footer media.
-                 * @member {"audioMessage"|undefined} media
-                 * @memberof proto.Message.InteractiveMessage.Footer
-                 * @instance
-                 */
-                Object.defineProperty(Footer.prototype, "media", {
-                    get: $util.oneOfGetter($oneOfFields = ["audioMessage"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
@@ -80955,10 +80798,6 @@ $root.proto = (function() {
                         writer = $Writer.create();
                     if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
-                    if (message.audioMessage != null && Object.hasOwnProperty.call(message, "audioMessage"))
-                        $root.proto.Message.AudioMessage.encode(message.audioMessage, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    if (message.hasMediaAttachment != null && Object.hasOwnProperty.call(message, "hasMediaAttachment"))
-                        writer.uint32(/* id 3, wireType 0 =*/24).bool(message.hasMediaAttachment);
                     return writer;
                 };
 
@@ -80986,25 +80825,15 @@ $root.proto = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Footer.decode = function decode(reader, length, error) {
+                Footer.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage.Footer();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
-                                break;
-                            }
-                        case 3: {
-                                message.hasMediaAttachment = reader.bool();
-                                break;
-                            }
-                        case 2: {
-                                message.audioMessage = $root.proto.Message.AudioMessage.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -81048,19 +80877,6 @@ $root.proto = (function() {
                         if (!$util.isString(message.text))
                             return "text: string expected";
                     }
-                    if (message.hasMediaAttachment != null && message.hasOwnProperty("hasMediaAttachment")) {
-                        properties._hasMediaAttachment = 1;
-                        if (typeof message.hasMediaAttachment !== "boolean")
-                            return "hasMediaAttachment: boolean expected";
-                    }
-                    if (message.audioMessage != null && message.hasOwnProperty("audioMessage")) {
-                        properties.media = 1;
-                        {
-                            var error = $root.proto.Message.AudioMessage.verify(message.audioMessage);
-                            if (error)
-                                return "audioMessage." + error;
-                        }
-                    }
                     return null;
                 };
 
@@ -81078,13 +80894,6 @@ $root.proto = (function() {
                     var message = new $root.proto.Message.InteractiveMessage.Footer();
                     if (object.text != null)
                         message.text = String(object.text);
-                    if (object.hasMediaAttachment != null)
-                        message.hasMediaAttachment = Boolean(object.hasMediaAttachment);
-                    if (object.audioMessage != null) {
-                        if (typeof object.audioMessage !== "object")
-                            throw TypeError(".proto.Message.InteractiveMessage.Footer.audioMessage: object expected");
-                        message.audioMessage = $root.proto.Message.AudioMessage.fromObject(object.audioMessage);
-                    }
                     return message;
                 };
 
@@ -81105,16 +80914,6 @@ $root.proto = (function() {
                         object.text = message.text;
                         if (options.oneofs)
                             object._text = "text";
-                    }
-                    if (message.audioMessage != null && message.hasOwnProperty("audioMessage")) {
-                        object.audioMessage = $root.proto.Message.AudioMessage.toObject(message.audioMessage, options);
-                        if (options.oneofs)
-                            object.media = "audioMessage";
-                    }
-                    if (message.hasMediaAttachment != null && message.hasOwnProperty("hasMediaAttachment")) {
-                        object.hasMediaAttachment = message.hasMediaAttachment;
-                        if (options.oneofs)
-                            object._hasMediaAttachment = "hasMediaAttachment";
                     }
                     return object;
                 };
@@ -81157,7 +80956,6 @@ $root.proto = (function() {
                  * @property {string|null} [title] Header title
                  * @property {string|null} [subtitle] Header subtitle
                  * @property {boolean|null} [hasMediaAttachment] Header hasMediaAttachment
-                 * @property {proto.Message.InteractiveMessage.IBloksWidget|null} [bloksWidget] Header bloksWidget
                  * @property {proto.Message.IDocumentMessage|null} [documentMessage] Header documentMessage
                  * @property {proto.Message.IImageMessage|null} [imageMessage] Header imageMessage
                  * @property {Uint8Array|null} [jpegThumbnail] Header jpegThumbnail
@@ -81204,14 +81002,6 @@ $root.proto = (function() {
                  * @instance
                  */
                 Header.prototype.hasMediaAttachment = null;
-
-                /**
-                 * Header bloksWidget.
-                 * @member {proto.Message.InteractiveMessage.IBloksWidget|null|undefined} bloksWidget
-                 * @memberof proto.Message.InteractiveMessage.Header
-                 * @instance
-                 */
-                Header.prototype.bloksWidget = null;
 
                 /**
                  * Header documentMessage.
@@ -81282,12 +81072,6 @@ $root.proto = (function() {
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                // Virtual OneOf for proto3 optional field
-                Object.defineProperty(Header.prototype, "_bloksWidget", {
-                    get: $util.oneOfGetter($oneOfFields = ["bloksWidget"]),
-                    set: $util.oneOfSetter($oneOfFields)
-                });
-
                 /**
                  * Header media.
                  * @member {"documentMessage"|"imageMessage"|"jpegThumbnail"|"videoMessage"|"locationMessage"|"productMessage"|undefined} media
@@ -81341,8 +81125,6 @@ $root.proto = (function() {
                         $root.proto.Message.LocationMessage.encode(message.locationMessage, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                     if (message.productMessage != null && Object.hasOwnProperty.call(message, "productMessage"))
                         $root.proto.Message.ProductMessage.encode(message.productMessage, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
-                    if (message.bloksWidget != null && Object.hasOwnProperty.call(message, "bloksWidget"))
-                        $root.proto.Message.InteractiveMessage.BloksWidget.encode(message.bloksWidget, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                     return writer;
                 };
 
@@ -81370,14 +81152,12 @@ $root.proto = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Header.decode = function decode(reader, length, error) {
+                Header.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage.Header();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -81389,10 +81169,6 @@ $root.proto = (function() {
                             }
                         case 5: {
                                 message.hasMediaAttachment = reader.bool();
-                                break;
-                            }
-                        case 10: {
-                                message.bloksWidget = $root.proto.Message.InteractiveMessage.BloksWidget.decode(reader, reader.uint32());
                                 break;
                             }
                         case 3: {
@@ -81470,14 +81246,6 @@ $root.proto = (function() {
                         if (typeof message.hasMediaAttachment !== "boolean")
                             return "hasMediaAttachment: boolean expected";
                     }
-                    if (message.bloksWidget != null && message.hasOwnProperty("bloksWidget")) {
-                        properties._bloksWidget = 1;
-                        {
-                            var error = $root.proto.Message.InteractiveMessage.BloksWidget.verify(message.bloksWidget);
-                            if (error)
-                                return "bloksWidget." + error;
-                        }
-                    }
                     if (message.documentMessage != null && message.hasOwnProperty("documentMessage")) {
                         properties.media = 1;
                         {
@@ -81554,11 +81322,6 @@ $root.proto = (function() {
                         message.subtitle = String(object.subtitle);
                     if (object.hasMediaAttachment != null)
                         message.hasMediaAttachment = Boolean(object.hasMediaAttachment);
-                    if (object.bloksWidget != null) {
-                        if (typeof object.bloksWidget !== "object")
-                            throw TypeError(".proto.Message.InteractiveMessage.Header.bloksWidget: object expected");
-                        message.bloksWidget = $root.proto.Message.InteractiveMessage.BloksWidget.fromObject(object.bloksWidget);
-                    }
                     if (object.documentMessage != null) {
                         if (typeof object.documentMessage !== "object")
                             throw TypeError(".proto.Message.InteractiveMessage.Header.documentMessage: object expected");
@@ -81649,11 +81412,6 @@ $root.proto = (function() {
                         object.productMessage = $root.proto.Message.ProductMessage.toObject(message.productMessage, options);
                         if (options.oneofs)
                             object.media = "productMessage";
-                    }
-                    if (message.bloksWidget != null && message.hasOwnProperty("bloksWidget")) {
-                        object.bloksWidget = $root.proto.Message.InteractiveMessage.BloksWidget.toObject(message.bloksWidget, options);
-                        if (options.oneofs)
-                            object._bloksWidget = "bloksWidget";
                     }
                     return object;
                 };
@@ -81811,14 +81569,12 @@ $root.proto = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NativeFlowMessage.decode = function decode(reader, length, error) {
+                NativeFlowMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage.NativeFlowMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.buttons && message.buttons.length))
@@ -82091,14 +81847,12 @@ $root.proto = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NativeFlowButton.decode = function decode(reader, length, error) {
+                    NativeFlowButton.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -82362,14 +82116,12 @@ $root.proto = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ShopMessage.decode = function decode(reader, length, error) {
+                ShopMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Message.InteractiveMessage.ShopMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.id = reader.string();
