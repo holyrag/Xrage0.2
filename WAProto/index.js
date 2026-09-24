@@ -80019,7 +80019,6 @@ $root.proto = (function() {
                  * Properties of a BloksWidget.
                  * @memberof proto.Message.InteractiveMessage
                  * @interface IBloksWidget
-                 * @property {string|null} [uuid] BloksWidget uuid
                  * @property {string|null} [data] BloksWidget data
                  * @property {string|null} [type] BloksWidget type
                  * @property {string|null} [fallback] BloksWidget fallback
@@ -80040,13 +80039,6 @@ $root.proto = (function() {
                                 this[keys[i]] = properties[keys[i]];
                 }
 
-                /**
-                 * BloksWidget uuid.
-                 * @member {string|null|undefined} uuid
-                 * @memberof proto.Message.InteractiveMessage.BloksWidget
-                 * @instance
-                 */
-                BloksWidget.prototype.uuid = null;
 
                 /**
                  * BloksWidget data.
@@ -80075,11 +80067,6 @@ $root.proto = (function() {
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
-                // Virtual OneOf for proto3 optional field
-                Object.defineProperty(BloksWidget.prototype, "_uuid", {
-                    get: $util.oneOfGetter($oneOfFields = ["uuid"]),
-                    set: $util.oneOfSetter($oneOfFields)
-                });
 
                 // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BloksWidget.prototype, "_data", {
@@ -80123,8 +80110,6 @@ $root.proto = (function() {
                 BloksWidget.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.uuid != null && Object.hasOwnProperty.call(message, "uuid"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.uuid);
                     if (message.data != null && Object.hasOwnProperty.call(message, "data"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
                     if (message.type != null && Object.hasOwnProperty.call(message, "type"))
@@ -80167,10 +80152,6 @@ $root.proto = (function() {
                         if (tag === error)
                             break;
                         switch (tag >>> 3) {
-                        case 1: {
-                                message.uuid = reader.string();
-                                break;
-                            }
                         case 2: {
                                 message.data = reader.string();
                                 break;
@@ -80219,11 +80200,6 @@ $root.proto = (function() {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
                     var properties = {};
-                    if (message.uuid != null && message.hasOwnProperty("uuid")) {
-                        properties._uuid = 1;
-                        if (!$util.isString(message.uuid))
-                            return "uuid: string expected";
-                    }
                     if (message.data != null && message.hasOwnProperty("data")) {
                         properties._data = 1;
                         if (!$util.isString(message.data))
@@ -80254,8 +80230,6 @@ $root.proto = (function() {
                     if (object instanceof $root.proto.Message.InteractiveMessage.BloksWidget)
                         return object;
                     var message = new $root.proto.Message.InteractiveMessage.BloksWidget();
-                    if (object.uuid != null)
-                        message.uuid = String(object.uuid);
                     if (object.data != null)
                         message.data = String(object.data);
                     if (object.type != null)
@@ -80278,11 +80252,6 @@ $root.proto = (function() {
                     if (!options)
                         options = {};
                     var object = {};
-                    if (message.uuid != null && message.hasOwnProperty("uuid")) {
-                        object.uuid = message.uuid;
-                        if (options.oneofs)
-                            object._uuid = "uuid";
-                    }
                     if (message.data != null && message.hasOwnProperty("data")) {
                         object.data = message.data;
                         if (options.oneofs)
